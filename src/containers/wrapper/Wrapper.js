@@ -17,7 +17,6 @@ export default class Wrapper extends Component {
     this.sendForm = this.sendForm.bind(this);
   }
 
-
   sendForm(data) {
     postForm(data).then(res => {
       console.log(res);

@@ -112,8 +112,6 @@ export default class Form extends Component {
                   >
             Submit
           </button>
-
-          {/* <button type="submit">Submit</button> */}
         </form>
       </div>
     )
