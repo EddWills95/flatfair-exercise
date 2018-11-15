@@ -6,6 +6,8 @@ export function fetchConfig() {
 }
 
 export function postForm(data) {
-  return fetch(FLATBOND_URL, JSON.stringify(data))
-    .then(res => res.json());
+  return fetch(FLATBOND_URL, {
+    method: 'POST',
+    body: JSON.stringify(data)
+  }).then(res => res.json())
 }

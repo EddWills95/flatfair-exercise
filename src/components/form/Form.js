@@ -75,6 +75,12 @@ export default class Form extends Component {
 
   submitForm(event) {
     event.preventDefault();
+    const obj = {
+      postcode: this.state.postcode,
+      rent: this.state.rent
+    }
+
+    this.props.submit(obj);
   }
 
   render() {

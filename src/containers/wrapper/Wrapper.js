@@ -14,31 +14,27 @@ export default class Wrapper extends Component {
       finishedForm: false
     }
 
-    // this.sendForm = this.sendForm.bind(this);
+    this.sendForm = this.sendForm.bind(this);
   }
 
 
-  // sendForm(event, data) {
-  //   event.preventDefault();
-  //   postForm(data).then(res => {
-  //     console.log(res);
-  //     if (res.status === 'created') { 
-  //       this.setState({
-  //         finsihedForm: true
-  //       })
-  //     }
-  //   })
-  // }
+  sendForm(data) {
+    postForm(data).then(res => {
+      console.log(res);
+      if (res.status === 'created') { 
+        this.setState({
+          finsihedForm: true
+        })
+      }
+    })
+  }
 
   render() {
     return (
       <div className="Wrapper">
-  
-        {/* {!this.state.finishedForm &&  */}
-          <Form submit={this.submitForm} />
-        {/* } */}
+        
+          <Form submit={this.sendForm} />
 
-        {/* {this.state.finishedForm &&} */}
       
       </div>
     )

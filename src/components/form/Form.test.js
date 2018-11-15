@@ -156,7 +156,7 @@ describe('Form', () => {
         rent: 400
       });
 
-      button.simulate('click')
+      button.simulate('click', { preventDefault: jest.fn() })
 
       expect(mockSubmit).toHaveBeenCalled();
     })
