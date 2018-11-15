@@ -21,6 +21,7 @@ describe('Form', () => {
   it('should have the default state', () => {
     expect(wrapper.state()).toEqual({
       rent: 25,
+      rentSelect: 0,
       postcode: '',
       membershipFee: 0,
       apiResponse: {
@@ -91,11 +92,10 @@ describe('Form', () => {
     })
   })
 
-
   describe('visual', () => {
     it('should have inputs', () => {
       const rent = wrapper.find('#rent');
-      const rentSelector = wrapper.find('#rent-selector');
+      const rentSelector = wrapper.find('#rentSelect');
       const postcode = wrapper.find('#postcode');
       const submit = wrapper.find('button');
 
@@ -111,19 +111,37 @@ describe('Form', () => {
     })
   })
 
-
   describe('interactions', () => {
     it('should handle onCHange', () =>{
       wrapper.find('#rent').simulate('change', { target: { id: 'rent', value: 150 } });
   
       expect(wrapper.update().state('rent')).toEqual(150);
-      
     })
+
     it('should calculate new membership on rent change', () => {
       wrapper.find('#rent').simulate('change', { target: { id: 'rent', value: 150 } });
       
       const membershipFee = wrapper.find('#membership-fee');
       expect(membershipFee.text()).toEqual('£180.00')
+    })
+
+    describe('rent selector', () => {
+      const selector = wrapper.find('#rentSelect');
+      
+      it('should have a rent selector, with week/month', () => {
+        const options = wrapper.find('option');
+        
+        expect(selector.length).toEqual(1);
+        expect(options.length).toEqual(2);
+      })
+
+      it('should change the value of rent if changed', () => {
+        selector.simulate('change', { target: { id: 'rentSelect', value: 1 }});
+
+        const rentValue = wrapper.update().find('#rent');
+
+        expect(rentValue.props().value).toEqual(wrapper.state('rent') * 4);
+      })
     })
   })
 })
