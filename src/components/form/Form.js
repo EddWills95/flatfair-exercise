@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { fetchConfig } from '../../api/api';
 
+import './Form.scss';
+
 // Used to make it easy to change
 const VAT = 0.2;
 const MEMBERSHIP_MINIMUM = 120;
@@ -8,6 +10,7 @@ const MIN_WEEK_RENT = 25;
 const MAX_WEEK_RENT = 110;
 const MIN_MONTH_RENT = 2000;
 const MAX_MONTH_RENT = 8660;
+
 
 export default class Form extends Component {
 
@@ -87,26 +90,29 @@ export default class Form extends Component {
     return(
       <div className="Form">
         <form onSubmit={this.submitForm}>
-
-          <input id="rent" onChange={this.handleInput.bind(this)} 
-                 value={this.state.rentSelect === 0 ? this.state.rent : this.state.rent * 4} 
-                 type="number"
-                 min={this.state.rentSelect === 0 ? MIN_WEEK_RENT : MAX_WEEK_RENT}
-                 max={this.state.rentSelect === 0 ? MIN_MONTH_RENT : MAX_MONTH_RENT} 
-          />
+      
           
-          <select id="rentSelect" 
-                  value={this.state.rentSelect} 
-                  onChange={this.handleInput.bind(this)}
-          >
-            <option value={0}>Weekly</option>
-            <option value={1}>Monthly</option>
-          </select>
+            <input id="rent" onChange={this.handleInput.bind(this)} 
+                  value={this.state.rentSelect === 0 ? this.state.rent : this.state.rent * 4} 
+                  type="number"
+                  min={this.state.rentSelect === 0 ? MIN_WEEK_RENT : MAX_WEEK_RENT}
+                  max={this.state.rentSelect === 0 ? MIN_MONTH_RENT : MAX_MONTH_RENT} 
+            />
+            
+            <select id="rentSelect" 
+                    value={this.state.rentSelect} 
+                    onChange={this.handleInput.bind(this)}
+            >
+              <option value={0}>Weekly</option>
+              <option value={1}>Monthly</option>
+            </select>
+            
 
+  
           <p id="membership-fee">{`£${this.state.membershipFee}`}</p>
 
-          <input id="postcode" type="string" />
-
+          <input id="postcode" onChange={this.handleInput} type="string" />
+          
           <button className="submit-button" 
                   type="submit"
                   >
