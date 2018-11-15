@@ -95,7 +95,7 @@ export default class Form extends Component {
 
           <input id="postcode" type="string" />
 
-          <button className="submit-button" type="submit">Submit</button>
+          <button disabled={false} className="submit-button" type="submit">Submit</button>
         </form>
       </div>
     )
