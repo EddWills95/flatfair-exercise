@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 
+import { postForm } from '../../api/api';
+
+import Form from '../../components/form/Form';
+
+
 export default class Wrapper extends Component {
 
   constructor() {
@@ -8,22 +13,32 @@ export default class Wrapper extends Component {
     this.state = {
       finishedForm: false
     }
+
+    // this.sendForm = this.sendForm.bind(this);
   }
 
 
-  sendForm() {
-    const dataObj = {
-      rent: this.state.rent,
-      postcode: this.state.postcode
-    }
-    postForm(dataObj).then()
-  }
+  // sendForm(event, data) {
+  //   event.preventDefault();
+  //   postForm(data).then(res => {
+  //     console.log(res);
+  //     if (res.status === 'created') { 
+  //       this.setState({
+  //         finsihedForm: true
+  //       })
+  //     }
+  //   })
+  // }
 
   render() {
     return (
       <div className="Wrapper">
   
-        {this.props.children}
+        {/* {!this.state.finishedForm &&  */}
+          <Form submit={this.submitForm} />
+        {/* } */}
+
+        {/* {this.state.finishedForm &&} */}
       
       </div>
     )

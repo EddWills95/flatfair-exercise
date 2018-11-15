@@ -142,5 +142,23 @@ describe('Form', () => {
         expect(rentValue.props().value).toEqual(wrapper.state('rent') * 4);
       })
     })
+
+    describe('sending the form', () => {
+      const button = wrapper.find('button');
+      const mockSubmit = jest.fn();
+
+      wrapper.setProps({
+        submit: mockSubmit
+      })
+
+      wrapper.setState({
+        postcode: 'EC1 TQL',
+        rent: 400
+      });
+
+      button.simulate('click')
+
+      expect(mockSubmit).toHaveBeenCalled();
+    })
   })
 })

@@ -19,7 +19,7 @@ export default class Form extends Component {
     this.state = {
       rent: 0,
       rentSelect: 0,
-      postcode: '',
+      postcode: 'CM17 0PT',
       membershipFee: 0,
       apiResponse: {
         fixed_membership_fee: false,
@@ -28,6 +28,7 @@ export default class Form extends Component {
     }
 
     this.calculateMembership = this.calculateMembership.bind(this);
+    this.submitForm = this.submitForm.bind(this);
   }
 
   componentDidMount() {
@@ -72,10 +73,15 @@ export default class Form extends Component {
     return finalFee
   }
 
+  submitForm(event) {
+    event.preventDefault();
+  }
+
   render() {
     return(
       <div className="Form">
-        <form>
+        <form onSubmit={this.submitForm}>
+
           <input id="rent" onChange={this.handleInput.bind(this)} 
                  value={this.state.rentSelect === 0 ? this.state.rent : this.state.rent * 4} 
                  type="number"
@@ -95,7 +101,13 @@ export default class Form extends Component {
 
           <input id="postcode" type="string" />
 
-          <button disabled={false} className="submit-button" type="submit">Submit</button>
+          <button className="submit-button" 
+                  type="submit"
+                  >
+            Submit
+          </button>
+
+          {/* <button type="submit">Submit</button> */}
         </form>
       </div>
     )

@@ -3,23 +3,19 @@ import { shallow } from 'enzyme';
 import Wrapper from './Wrapper';
 
 describe('Wrapper', () => {
-  const comp = shallow(<Wrapper />);
+  const wrapper = shallow(<Wrapper />);
 
   it('should render without fail', () => {
-    expect(comp).toBeTruthy();
+    expect(wrapper).toBeTruthy();
   })
 
-  it('should render its children', () => {
-    const mockChild = () => {
-      return <div className="i-am-child"> </div>
-    }
-    
-    comp.setProps({
-      children: mockChild()
+  it('should render components conditionally', () => {
+    wrapper.setState({
+      finishedForm: false
     })
 
-    const child = comp.update().find('.i-am-child');
+    const form = wrapper.update().find('Form');
 
-    expect(child.length).toEqual(1);
+    expect(form.length).toEqual(1);
   })
 })
