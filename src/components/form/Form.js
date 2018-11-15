@@ -48,9 +48,9 @@ export default class Form extends Component {
         <form>
           <input id="rent" onChange={this.handleInput.bind(this)} type="number" />
           
-          <input className="rent-selector" type="select" />
+          <input id="rent-selector" type="select" />
 
-          <p className="membership-fee-display"></p>
+          <p id="membership-fee">{this.state.membershipFee}</p>
 
           <input id="postcode" type="string" />
 

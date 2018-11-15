@@ -62,6 +62,25 @@ describe('Form', () => {
   })
 
 
+  describe('visual', () => {
+    it('should have inputs', () => {
+      const rent = wrapper.find('#rent');
+      const rentSelector = wrapper.find('#rent-selector');
+      const postcode = wrapper.find('#postcode');
+      const submit = wrapper.find('button');
+
+      [rent, rentSelector, postcode, submit].forEach(input => {
+        expect(input.length).toEqual(1);
+      })
+    })
+
+    it('should display membership fee', () => {
+      const membershipFee = wrapper.find('#membership-fee');
+
+      expect(membershipFee.text()).toEqual('0');
+    })
+  })
+
 
   describe('interactions', () => {
     it('should handle onCHange', () =>{
