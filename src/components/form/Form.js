@@ -63,11 +63,16 @@ export default class Form extends Component {
       <div className="Form">
         <form>
           <input id="rent" onChange={this.handleInput.bind(this)} 
-                 value={this.state.rentSelect > 0 ? this.state.rent * 4 : this.state.rent} 
-                 type="number" 
+                 value={this.state.rentSelect === 0 ? this.state.rent : this.state.rent * 4} 
+                 type="number"
+                 min={this.state.rentSelect === 0 ? 25 : 110}
+                 max={this.state.rentSelect === 0 ? 2000 : 8660} 
           />
           
-          <select id="rentSelect" value={this.state.rentSelect} onChange={this.handleInput.bind(this)}>
+          <select id="rentSelect" 
+                  value={this.state.rentSelect} 
+                  onChange={this.handleInput.bind(this)}
+          >
             <option value={0}>Weekly</option>
             <option value={1}>Monthly</option>
           </select>
