@@ -19,7 +19,6 @@ export default class Wrapper extends Component {
 
   sendForm(data) {
     postForm(data).then(res => {
-      console.log(res);
       if (res.status === 'created') { 
         this.setState({
           finishedForm: true
