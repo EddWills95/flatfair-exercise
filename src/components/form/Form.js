@@ -37,21 +37,19 @@ export default class Form extends Component {
     
     // if fixed
     if (this.state.apiResponse.fixed_membership_fee) {
-      const fixed = this.state.apiResponse.fixed_membership_fee_amount;
-      vat = VAT * fixed;
-      membershipFee = fixed + vat;
+      membershipFee = this.state.apiResponse.fixed_membership_fee_amount;
     // If less than minimum
     } else if (this.state.rent < MEMBERSHIP_MINIMUM) {
-      vat = VAT * 120;
-      membershipFee = vat + 120;
+      membershipFee = 120;
     // Normal operation
     } else {
-      vat = VAT * this.state.rent 
-      membershipFee = vat + this.state.rent
+      membershipFee = this.state.rent
     }
-
-    const finalFee = parseFloat(membershipFee).toFixed(2);
-
+    
+    // const finalFee = parseFloat(membershipFee).toFixed(2);
+    // Forcing it to a string - Not ideal
+    let finalFee = parseFloat(membershipFee + (VAT * membershipFee)).toFixed(2);
+    
     this.setState({
       membershipFee: finalFee
     })

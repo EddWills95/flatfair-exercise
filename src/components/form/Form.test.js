@@ -85,7 +85,7 @@ describe('Form', () => {
 
         it('should return 120 as the minimum', () => {
           wrapper.instance().calculateMembership();
-          expect(wrapper.update().state('membershipFee')).toEqual(144.00);
+          expect(wrapper.update().state('membershipFee')).toEqual('144.00');
         })
       })
     })
