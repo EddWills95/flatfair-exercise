@@ -1,6 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
+// import { fetchConfig } from '../../api/api';
+
 import Form from './Form';
 
 describe('Form', () => {
@@ -30,9 +32,6 @@ describe('Form', () => {
       }
     })
   })
-
-  // it('should call api on mount', () => {
-  // })
 
   describe('functions', () => {
     it('should have a handler function', () =>{
