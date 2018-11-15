@@ -11,7 +11,7 @@ export default class Form extends Component {
     super();
 
     this.state = {
-      rent: 25,
+      rent: 0,
       postcode: '',
       membershipFee: 0,
       apiResponse: {
@@ -26,15 +26,14 @@ export default class Form extends Component {
   handleInput(event) {
     this.setState({
       [event.target.id]: event.target.value
-    })
-
-    if (event.target.id === 'rent') {
+    }, () => { 
       this.calculateMembership();
-    }
+    })
   }
 
   calculateMembership() {
-    let vat, membershipFee;
+    let vat 
+    let membershipFee = 0.0;
     
     // if fixed
     if (this.state.apiResponse.fixed_membership_fee) {
@@ -51,20 +50,22 @@ export default class Form extends Component {
       membershipFee = vat + this.state.rent
     }
 
+    const finalFee = parseFloat(membershipFee).toFixed(2);
+
     this.setState({
-      membershipFee: membershipFee
+      membershipFee: finalFee
     })
     
-    return membershipFee
+    return finalFee
   }
 
   render() {
     return(
       <div className="Form">
         <form>
-          <input id="rent" onChange={this.handleInput.bind(this)} type="number" />
+          <input id="rent" onChange={this.handleInput.bind(this)} value={this.state.rent} type="number" />
           
-          <input id="rent-selector" type="select" />
+          <select id="rent-selector" />
 
           <p id="membership-fee">{`£${this.state.membershipFee}`}</p>
 
