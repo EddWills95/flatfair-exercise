@@ -1,9 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Container from './Container';
+import Wrapper from './Wrapper';
 
-describe('Container', () => {
-  const comp = shallow(<Container />);
+describe('Wrapper', () => {
+  const comp = shallow(<Wrapper />);
 
   it('should render without fail', () => {
     expect(comp).toBeTruthy();
