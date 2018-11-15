@@ -23,21 +23,25 @@ export default class Wrapper extends Component {
       console.log(res);
       if (res.status === 'created') { 
         this.setState({
-          finsihedForm: true
+          finishedForm: true
         })
       }
     })
   }
 
   render() {
-    return (
-      <div className="Wrapper">
-        
+    if (this.state.finishedForm) { 
+      return (
+        <div className="Wrapper">
+          <p>FINISHED</p>
+        </div>
+      )
+    } else {
+      return (
+        <div className="Wrapper">
           <Form submit={this.sendForm} />
-
-      
-      </div>
-    )
+        </div> 
+      )
+    }
   }
-
 }
