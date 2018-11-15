@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 const VAT = 0.2;
+const MEMBERSHIP_MINIMUM = 120;
 
 export default class Form extends Component {
 
@@ -27,13 +28,28 @@ export default class Form extends Component {
       [event.target.id]: event.target.value
     })
 
-    // Call calulate membership after set State
+    if (event.target.id === 'rent') {
+      this.calculateMembership();
+    }
   }
 
   calculateMembership() {
-    const vat = VAT * this.state.rent 
+    let vat, membershipFee;
     
-    const membershipFee = vat + this.state.rent
+    // if fixed
+    if (this.state.apiResponse.fixed_membership_fee) {
+      const fixed = this.state.apiResponse.fixed_membership_fee_amount;
+      vat = VAT * fixed;
+      membershipFee = fixed + vat;
+    // If less than minimum
+    } else if (this.state.rent < MEMBERSHIP_MINIMUM) {
+      vat = VAT * 120;
+      membershipFee = vat + 120;
+    // Normal operation
+    } else {
+      vat = VAT * this.state.rent 
+      membershipFee = vat + this.state.rent
+    }
 
     this.setState({
       membershipFee: membershipFee
@@ -50,7 +66,7 @@ export default class Form extends Component {
           
           <input id="rent-selector" type="select" />
 
-          <p id="membership-fee">{this.state.membershipFee}</p>
+          <p id="membership-fee">{`£${this.state.membershipFee}`}</p>
 
           <input id="postcode" type="string" />
 

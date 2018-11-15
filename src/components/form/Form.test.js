@@ -55,9 +55,39 @@ describe('Form', () => {
         })
       })
 
-      // 1 Week rent + VAT Unless < 120
-      // If response is fixed_membership_fee (this + VAT)
+      describe('fixed: true', () => {
+        beforeEach(() => {
+          wrapper.setState({
+            rent: 400,
+            apiResponse: {
+              fixed_membership_fee: true,
+              fixed_membership_fee_amount: 320
+            }
+          })
+        })
 
+        it('should calculate', () => {
+          wrapper.instance().calculateMembership();
+          expect(wrapper.update().state('membershipFee')).toEqual(384);
+        })
+      })
+
+      describe('minimum reached', () => {
+        beforeEach(() => {
+          wrapper.setState({
+            rent: 110,
+            apiResponse: {
+              fixed_membership_fee: false,
+              fixed_memberhsip_fee_amount: 0
+            }
+          })
+        })
+
+        it('should return 120 as the minimum', () => {
+          wrapper.instance().calculateMembership();
+          expect(wrapper.update().state('membershipFee')).toEqual(144);
+        })
+      })
     })
   })
 
@@ -77,16 +107,23 @@ describe('Form', () => {
     it('should display membership fee', () => {
       const membershipFee = wrapper.find('#membership-fee');
 
-      expect(membershipFee.text()).toEqual('0');
+      expect(membershipFee.text()).toEqual('£0');
     })
   })
 
 
   describe('interactions', () => {
     it('should handle onCHange', () =>{
-      wrapper.find('#rent').simulate('change', { target: { id: 'rent', value: 50 } });
+      wrapper.find('#rent').simulate('change', { target: { id: 'rent', value: 150 } });
   
-      expect(wrapper.update().state('rent')).toEqual(50);
+      expect(wrapper.update().state('rent')).toEqual(150);
+      
+    })
+    it('should calculate new membership on rent change', () => {
+      wrapper.find('#rent').simulate('change', { target: { id: 'rent', value: 150 } });
+      
+      const membershipFee = wrapper.find('#membership-fee');
+      expect(membershipFee.text()).toEqual('£180')
     })
   })
 })
