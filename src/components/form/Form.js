@@ -111,7 +111,7 @@ export default class Form extends Component {
   
           <p id="membership-fee">{`£${this.state.membershipFee}`}</p>
 
-          <input id="postcode" onChange={this.handleInput} type="string" />
+          <input id="postcode" onChange={this.handleInput.bind(this)} type="string" />
           
           <button className="submit-button" 
                   type="submit"
