@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { fetchConfig } from '../../api/api';
 
 // Used to make it easy to change
 const VAT = 0.2;
@@ -27,6 +28,14 @@ export default class Form extends Component {
     }
 
     this.calculateMembership = this.calculateMembership.bind(this);
+  }
+
+  componentDidMount() {
+    fetchConfig().then(res => {
+      this.setState({
+        response: res
+      })
+    });
   }
 
   handleInput(event) {
