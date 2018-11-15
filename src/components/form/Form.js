@@ -32,9 +32,7 @@ export default class Form extends Component {
   }
 
   calculateMembership() {
-    let vat 
     let membershipFee = 0.0;
-    
     // if fixed
     if (this.state.apiResponse.fixed_membership_fee) {
       membershipFee = this.state.apiResponse.fixed_membership_fee_amount;
@@ -48,7 +46,7 @@ export default class Form extends Component {
     
     // const finalFee = parseFloat(membershipFee).toFixed(2);
     // Forcing it to a string - Not ideal
-    let finalFee = parseFloat(membershipFee + (VAT * membershipFee)).toFixed(2);
+    let finalFee = parseFloat(parseFloat(membershipFee) + (VAT * membershipFee)).toFixed(2);
     
     this.setState({
       membershipFee: finalFee
