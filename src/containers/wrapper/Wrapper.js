@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-import { postForm } from '../../api/api';
+import './Wrapper.scss';
 
 import Form from '../../components/form/Form';
-
+import { postForm } from '../../api/api';
 
 export default class Wrapper extends Component {
 
