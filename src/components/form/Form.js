@@ -109,29 +109,32 @@ export default class Form extends Component {
                 <Input type="number" handlerId="rent" prefix="£"
                        handler={this.handleInput.bind(this)}
                        min={this.state.rentSelect === 0 ? MIN_WEEK_RENT : MAX_WEEK_RENT}
-                       max={this.state.rentSelect === 0 ? MIN_MONTH_RENT : MAX_MONTH_RENT} 
+                       max={this.state.rentSelect === 0 ? MIN_MONTH_RENT : MAX_MONTH_RENT}
+                       placeholder="Rent"
                 />
 
-                <Select options={['Week', 'Month']} handler={this.handleInput.bind(this)} handlerId="rentSelect" />
+                <Select options={['Week', 'Month']} handler={this.handleInput.bind(this)} handlerId="rentSelect" /> 
+
               </div>
             
             </div>
+        
+            <div className="membership-fee">
+              <p className="membership-fee-prefix">Estimated Cost: </p>
+              <p className="membership-fee-cost">{`£${this.state.membershipFee}`}</p>
+            </div>
             
-            {/* <select id="rentSelect" 
-                    value={this.state.rentSelect} 
-                    onChange={this.handleInput.bind(this)}
-            >
-              <option value={0}>Weekly</option>
-              <option value={1}>Monthly</option>
-            </select> */}
-            
-
-
-
-  
-          <p id="membership-fee">{`£${this.state.membershipFee}`}</p>
-
-          <input id="postcode" onChange={this.handleInput.bind(this)} type="string" />
+              
+            <div className="form-group">
+              <div className="form-group-content">
+                <Input type="text" handlerId="postcode"
+                       handler={this.handleInput.bind(this)}
+                       placeholder="Postcode"
+                       autocomplete="postal-code"
+                />
+                
+              </div>
+            </div>
           
           <button className="submit-button" 
                   type="submit"

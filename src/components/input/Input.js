@@ -40,6 +40,8 @@ export default class Input extends Component {
               value={this.state.value}
               min={this.props.min}
               max={this.props.max}
+              placeholder={this.props.placeholder}
+              autocomplete={this.props.autocomplete}
         >
         
         </input>
