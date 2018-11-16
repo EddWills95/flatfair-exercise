@@ -44,11 +44,12 @@ export default class Input extends Component {
         <span>{this.props.prefix}</span>
         <input onChange={this.passEvent} 
               type={this.props.type}
-              value={this.modifiedValue()}
+              value={this.props.value}
               min={this.props.min}
               max={this.props.max}
               placeholder={this.props.placeholder}
               autoComplete={this.props.autocomplete}
+              required={this.props.required}
         >
         
         </input>

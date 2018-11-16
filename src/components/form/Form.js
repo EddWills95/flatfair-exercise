@@ -30,17 +30,20 @@ export default class Form extends Component {
       apiResponse: {
         fixed_membership_fee: false,
         fixed_memberhsip_fee_amount: 0
-      }
+      },
+      errors: true
     }
 
     this.calculateMembership = this.calculateMembership.bind(this);
     this.submitForm = this.submitForm.bind(this);
+    this.checkFormValiditiy = this.checkFormValiditiy.bind(this);
   }
 
   componentDidMount() {
     fetchConfig().then(res => {
       this.setState({
-        response: res
+        response: res,
+        errors: null
       })
     });
   }
@@ -54,7 +57,16 @@ export default class Form extends Component {
   }
 
   calculateMembership() {
+    // relies on this being in weeks
+
+    let rent = this.state.rent;
+
     if (this.state.rent === 0) return 0;
+
+    // If selected months.
+    if (this.state.rentSelect === 1) {
+      rent = rent / 4;
+    }
 
     let membershipFee = 0.0;
     // if fixed
@@ -81,12 +93,28 @@ export default class Form extends Component {
 
   submitForm(event) {
     event.preventDefault();
-    const obj = {
-      postcode: this.state.postcode,
-      rent: this.state.rent
-    }
 
-    this.props.submit(obj);
+    if (!this.state.errors) { 
+      const obj = {
+        postcode: this.state.postcode,
+        rent: this.state.rent
+      }
+      this.props.submit(obj);
+    }
+  }
+
+  checkFormValiditiy() {
+    const form = document.getElementById('flatfair-form');
+
+    if(!form.checkFormValiditiy()) {
+      this.setState({
+        errors: 'Form Not Valid'
+      })
+    } else {
+      this.setState({
+        errors: null
+      })
+    }
   }
 
   render() {
@@ -94,25 +122,20 @@ export default class Form extends Component {
       <div className="Form">
         <h1>Create Your FlatFair</h1>
 
-        <form onSubmit={this.submitForm}>
+        <form onSubmit={this.submitForm} id="flatfair-form">
       
             <div className="form-group">
               <h2>How much is your rent?</h2>
 
               <div className="form-group-content">
-                {/* <input id="rent" onChange={this.handleInput.bind(this)} 
-                      value={this.state.rentSelect === 0 ? this.state.rent : this.state.rent * 4} 
-                      type="number"
-                      min={this.state.rentSelect === 0 ? MIN_WEEK_RENT : MAX_WEEK_RENT}
-                      max={this.state.rentSelect === 0 ? MIN_MONTH_RENT : MAX_MONTH_RENT} 
-                /> */}
 
                 <Input type="number" handlerId="rent" prefix="£"
                        handler={this.handleInput.bind(this)}
                        min={this.state.rentSelect === 0 ? MIN_WEEK_RENT : MAX_WEEK_RENT}
                        max={this.state.rentSelect === 0 ? MIN_MONTH_RENT : MAX_MONTH_RENT}
                        placeholder="Rent"
-                       valueModifier={this.state.rentSelect === 0 ? false : 4}
+                       value={this.state.rent} 
+                       required={true}
                 />
 
                 <Select options={['Week', 'Month']} handler={this.handleInput.bind(this)} handlerId="rentSelect" /> 
@@ -133,6 +156,7 @@ export default class Form extends Component {
                        handler={this.handleInput.bind(this)}
                        placeholder="Postcode"
                        autocomplete="postal-code"
+                       required={true}
                 />
                 
               </div>
@@ -140,9 +164,11 @@ export default class Form extends Component {
               
             <div className="form-group">
               <div className="form-group-content">
-                <Button text="Create"/>
+                <Button text="Create" disabled={this.state.errors}/>
               </div>
-            </div> 
+            </div>
+
+            <p>{this.state.errors}</p> 
         
         </form>
       </div>
