@@ -16,9 +16,6 @@ export default class Input extends Component {
   }
 
   passEvent(event) {
-    // Errors need a bit more passing around (Not showing validity)
-    // const valid = event.target.checkValidity();
-      
     this.setState({
       value: event.target.value,
     }, () => {
@@ -29,13 +26,6 @@ export default class Input extends Component {
         }
       })
     })
-  }
-
-  modifiedValue() {
-    if (this.props.valueModifier) {
-      return this.state.value * this.props.valueModifier;
-    }
-    return this.state.value;
   }
      
   render() {
