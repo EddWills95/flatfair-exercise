@@ -1,5 +1,4 @@
 # FlatFair Font-End Exercise
-## Edd Williams
 
 N.B. Please run `npm i` first
 
