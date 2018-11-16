@@ -4,11 +4,11 @@ import './Input.scss';
 
 export default class Input extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
-      value: '',
+      value: props.type === 'number' ? 0 : '',
       error: null
     }
 
@@ -30,6 +30,13 @@ export default class Input extends Component {
       })
     })
   }
+
+  modifiedValue() {
+    if (this.props.valueModifier) {
+      return this.state.value * this.props.valueModifier;
+    }
+    return this.state.value;
+  }
      
   render() {
     return (
@@ -37,7 +44,7 @@ export default class Input extends Component {
         <span>{this.props.prefix}</span>
         <input onChange={this.passEvent} 
               type={this.props.type}
-              value={this.state.value}
+              value={this.modifiedValue()}
               min={this.props.min}
               max={this.props.max}
               placeholder={this.props.placeholder}

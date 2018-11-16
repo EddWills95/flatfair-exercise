@@ -112,6 +112,7 @@ export default class Form extends Component {
                        min={this.state.rentSelect === 0 ? MIN_WEEK_RENT : MAX_WEEK_RENT}
                        max={this.state.rentSelect === 0 ? MIN_MONTH_RENT : MAX_MONTH_RENT}
                        placeholder="Rent"
+                       valueModifier={this.state.rentSelect === 0 ? false : 4}
                 />
 
                 <Select options={['Week', 'Month']} handler={this.handleInput.bind(this)} handlerId="rentSelect" /> 
