@@ -4,6 +4,7 @@ import './Wrapper.scss';
 
 import Form from '../../components/form/Form';
 import { postForm } from '../../api/api';
+import Finished from '../../components/finished/Finished';
 
 export default class Wrapper extends Component {
 
@@ -11,7 +12,7 @@ export default class Wrapper extends Component {
     super();
 
     this.state = {
-      finishedForm: false
+      finishedForm: true
     }
 
     this.sendForm = this.sendForm.bind(this);
@@ -31,7 +32,7 @@ export default class Wrapper extends Component {
     if (this.state.finishedForm) { 
       return (
         <div className="Wrapper">
-          <p>FINISHED</p>
+          <Finished />
         </div>
       )
     } else {
