@@ -146,7 +146,6 @@ export default class Form extends Component {
               <p className="membership-fee-prefix">Estimated Cost: </p>
               <p className="membership-fee-cost">{`£${this.state.membershipFee}`}</p>
             </div>
-            
               
             <div className="form-group">
               <div className="form-group-content">

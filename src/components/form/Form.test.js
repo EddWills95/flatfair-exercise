@@ -14,7 +14,8 @@ describe('Form', () => {
       apiResponse: {
         fixed_membership_fee: false,
         fixed_memberhsip_fee_amount: 0
-      }
+      },
+      errors: true
     })
   })
 
@@ -29,7 +30,8 @@ describe('Form', () => {
       apiResponse: {
         fixed_membership_fee: false,
         fixed_memberhsip_fee_amount: 0
-      }
+      },
+      errors: true
     })
   })
 
@@ -92,55 +94,46 @@ describe('Form', () => {
   })
 
   describe('visual', () => {
-    it('should have inputs', () => {
-      const rent = wrapper.find('#rent');
-      const rentSelector = wrapper.find('#rentSelect');
-      const postcode = wrapper.find('#postcode');
-      const submit = wrapper.find('button');
-
-      [rent, rentSelector, postcode, submit].forEach(input => {
-        expect(input.length).toEqual(1);
-      })
-    })
-
     it('should display membership fee', () => {
-      const membershipFee = wrapper.find('#membership-fee');
+      const membershipFee = wrapper.find('.membership-fee');
 
-      expect(membershipFee.text()).toEqual('£0');
+      expect(membershipFee.text()).toEqual('Estimated Cost: £0');
     })
   })
 
-  describe('interactions', () => {
-    it('should handle onCHange', () =>{
-      wrapper.find('#rent').simulate('change', { target: { id: 'rent', value: 150 } });
+  // This is now being handled by each component
   
-      expect(wrapper.update().state('rent')).toEqual(150);
-    })
+  // describe('interactions', () => {
+  //   it('should handle onCHange', () =>{
+  //     wrapper.find('#rent').simulate('change', { target: { id: 'rent', value: 150 } });
+  
+  //     expect(wrapper.update().state('rent')).toEqual(150);
+  //   })
 
-    it('should calculate new membership on rent change', () => {
-      wrapper.find('#rent').simulate('change', { target: { id: 'rent', value: 150 } });
+  //   it('should calculate new membership on rent change', () => {
+  //     wrapper.find('#rent').simulate('change', { target: { id: 'rent', value: 150 } });
       
-      const membershipFee = wrapper.find('#membership-fee');
-      expect(membershipFee.text()).toEqual('£180.00')
-    })
+  //     const membershipFee = wrapper.find('#membership-fee');
+  //     expect(membershipFee.text()).toEqual('Estimated Cost: £180.00')
+  //   })
 
-    describe('rent selector', () => {
-      const selector = wrapper.find('#rentSelect');
+  //   describe('rent selector', () => {
+  //     const selector = wrapper.find('#rentSelect');
       
-      it('should have a rent selector, with week/month', () => {
-        const options = wrapper.find('option');
+  //     it('should have a rent selector, with week/month', () => {
+  //       const options = wrapper.find('option');
         
-        expect(selector.length).toEqual(1);
-        expect(options.length).toEqual(2);
-      })
+  //       expect(selector.length).toEqual(1);
+  //       expect(options.length).toEqual(2);
+  //     })
 
-      it('should change the value of rent if changed', () => {
-        selector.simulate('change', { target: { id: 'rentSelect', value: 1 }});
+  //     it('should change the value of rent if changed', () => {
+  //       selector.simulate('change', { target: { id: 'rentSelect', value: 1 }});
 
-        const rentValue = wrapper.update().find('#rent');
+  //       const rentValue = wrapper.update().find('#rent');
 
-        expect(rentValue.props().value).toEqual(wrapper.state('rent') * 4);
-      })
-    })
-  })
+  //       expect(rentValue.props().value).toEqual(wrapper.state('rent') * 4);
+  //     })
+  //   })
+  // })
 })
