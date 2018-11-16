@@ -8,8 +8,8 @@ To Test: `npm test`
 
 ## Explaination
 
-- This was a really fun challenge that pushed me to be more createive in my styling and keep my code reusable
-- I initially started by creating everything in the wrapper component and then moved to developing more re-usable input and select components.
+- This was a really fun challenge that pushed me to be more creative in my styling and keep my code reusable
+- I initially started by creating everything in the wrapper component and then moved to developing more re-usable input, select and button components.
    - This also gave me a really nice oppertunity to style them beyond the conventional `<input> * <button>` etc
 
 ## Further Work
