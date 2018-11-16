@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import Ionicon from 'react-ionicons';
+
 import './Wrapper.scss';
 
 import Form from '../../components/form/Form';
@@ -28,10 +30,19 @@ export default class Wrapper extends Component {
     })
   }
 
+  goBack() {
+    this.setState({
+      finishedForm: false
+    })
+  }
+
   render() {
     if (this.state.finishedForm) { 
       return (
         <div className="Wrapper">
+          <div className="back-button" onClick={this.goBack.bind(this)} >
+            <Ionicon icon="ios-arrow-round-back" fontSize="4rem"/>
+          </div>
           <Finished />
         </div>
       )
