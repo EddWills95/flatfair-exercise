@@ -1,0 +1,19 @@
+.Select {
+  display: flex;
+  flex-direction: row;
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,.33);
+  .select-option {
+    width: 5rem;
+    padding: 0.25rem;
+    background-color: rgb(227, 227, 227);
+    p {
+      margin: 0.25rem;
+    }
+    &:hover {
+      background-color: rgb(193, 193, 193);
+      cursor: pointer;
+    }
+  }
+}

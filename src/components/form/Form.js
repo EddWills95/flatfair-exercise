@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { fetchConfig } from '../../api/api';
 
 import './Form.scss';
+import Select from '../select/Select';
 
 // Used to make it easy to change
 const VAT = 0.2;
@@ -43,6 +44,7 @@ export default class Form extends Component {
   }
 
   handleInput(event) {
+    console.log(event);
     this.setState({
       [event.target.id]: event.target.value
     }, () => {
@@ -89,24 +91,34 @@ export default class Form extends Component {
   render() {
     return(
       <div className="Form">
+        <h1>Create Your FlatFair</h1>
+
         <form onSubmit={this.submitForm}>
       
-          
-            <input id="rent" onChange={this.handleInput.bind(this)} 
-                  value={this.state.rentSelect === 0 ? this.state.rent : this.state.rent * 4} 
-                  type="number"
-                  min={this.state.rentSelect === 0 ? MIN_WEEK_RENT : MAX_WEEK_RENT}
-                  max={this.state.rentSelect === 0 ? MIN_MONTH_RENT : MAX_MONTH_RENT} 
-            />
+            <div className="form-group">
+
+              <Select options={['Week', 'Month']} handler={this.handleInput.bind(this)} />
+
+              
+              <input id="rent" onChange={this.handleInput.bind(this)} 
+                    value={this.state.rentSelect === 0 ? this.state.rent : this.state.rent * 4} 
+                    type="number"
+                    min={this.state.rentSelect === 0 ? MIN_WEEK_RENT : MAX_WEEK_RENT}
+                    max={this.state.rentSelect === 0 ? MIN_MONTH_RENT : MAX_MONTH_RENT} 
+              />
             
-            <select id="rentSelect" 
+            </div>
+            
+            {/* <select id="rentSelect" 
                     value={this.state.rentSelect} 
                     onChange={this.handleInput.bind(this)}
             >
               <option value={0}>Weekly</option>
               <option value={1}>Monthly</option>
-            </select>
+            </select> */}
             
+
+
 
   
           <p id="membership-fee">{`£${this.state.membershipFee}`}</p>
