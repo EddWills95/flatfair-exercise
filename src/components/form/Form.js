@@ -95,7 +95,8 @@ export default class Form extends Component {
     if (!this.state.errors) { 
       const obj = {
         postcode: this.state.postcode,
-        rent: this.state.rent
+        rent: this.state.rent,
+        membershipFee: this.state.membershipFee
       }
       this.props.submit(obj);
     }

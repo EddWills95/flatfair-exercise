@@ -14,17 +14,24 @@ export default class Wrapper extends Component {
     super();
 
     this.state = {
-      finishedForm: true
+      finishedForm: false,
+      flatfair: null
     }
 
     this.sendForm = this.sendForm.bind(this);
   }
 
   sendForm(data) {
-    postForm(data).then(res => {
+    const postObj = {
+      postcode: data.postcode,
+      rent: data.rent
+    } 
+
+    postForm(postObj).then(res => {
       if (res.status === 'created') { 
         this.setState({
-          finishedForm: true
+          finishedForm: true,
+          flatfair: data
         })
       }
     })
@@ -43,7 +50,7 @@ export default class Wrapper extends Component {
           <div className="back-button" onClick={this.goBack.bind(this)} >
             <Ionicon icon="md-arrow-back" fontSize="4rem" color="white"/>
           </div>
-          <Finished />
+          <Finished flatfair={this.state.flatfair}/>
         </div>
       )
     } else {
