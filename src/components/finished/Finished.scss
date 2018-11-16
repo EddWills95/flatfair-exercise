@@ -1,5 +1,6 @@
 .Finished {
-  height: 30%;
+  height: 40%;
+  padding: 3rem;
   .inner {
     display: flex;
     flex-direction: row;
@@ -17,6 +18,14 @@
   .finished-content {
     span {
       font-size: 1.5rem;
+    }
+    .finished-details {
+      box-shadow: 0 2px 8px rgba(0,0,0,.25);
+      flex: 1;
+      max-width: 40%;
+      margin: 0 auto;
+      font-size: 1rem;
+      padding: 0.5rem;
     }
   }
 }
