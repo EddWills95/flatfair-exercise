@@ -106,7 +106,7 @@ export default class Form extends Component {
                       max={this.state.rentSelect === 0 ? MIN_MONTH_RENT : MAX_MONTH_RENT} 
                 /> */}
 
-                <Input type="number" handlerId="rent"
+                <Input type="number" handlerId="rent" prefix="£"
                        handler={this.handleInput.bind(this)}
                        min={this.state.rentSelect === 0 ? MIN_WEEK_RENT : MAX_WEEK_RENT}
                        max={this.state.rentSelect === 0 ? MIN_MONTH_RENT : MAX_MONTH_RENT} 
