@@ -18,12 +18,13 @@ export default class Select extends Component {
   passEvent(selectedIndex) {
     this.setState({
       selected: selectedIndex
-    });
-
-    this.props.handler({
-      target: {
-        value: this.state.selected
-      }
+    }, () => {
+      this.props.handler({
+        target: {
+          id: this.props.handlerId,
+          value: this.state.selected
+        }
+      })
     })
   }
 
@@ -35,7 +36,7 @@ export default class Select extends Component {
                key={i} 
                onClick={() => this.passEvent(i)}
           >
-            {o}   
+            <p>{o}</p>   
           </div>
         )}
       </div>

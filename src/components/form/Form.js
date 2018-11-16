@@ -3,6 +3,7 @@ import { fetchConfig } from '../../api/api';
 
 import './Form.scss';
 import Select from '../select/Select';
+import Input from '../input/Input';
 
 // Used to make it easy to change
 const VAT = 0.2;
@@ -44,7 +45,6 @@ export default class Form extends Component {
   }
 
   handleInput(event) {
-    console.log(event);
     this.setState({
       [event.target.id]: event.target.value
     }, () => {
@@ -96,16 +96,24 @@ export default class Form extends Component {
         <form onSubmit={this.submitForm}>
       
             <div className="form-group">
+              <h2>How much is your rent?</h2>
 
-              <Select options={['Week', 'Month']} handler={this.handleInput.bind(this)} />
+              <div className="form-group-content">
+                {/* <input id="rent" onChange={this.handleInput.bind(this)} 
+                      value={this.state.rentSelect === 0 ? this.state.rent : this.state.rent * 4} 
+                      type="number"
+                      min={this.state.rentSelect === 0 ? MIN_WEEK_RENT : MAX_WEEK_RENT}
+                      max={this.state.rentSelect === 0 ? MIN_MONTH_RENT : MAX_MONTH_RENT} 
+                /> */}
 
-              
-              <input id="rent" onChange={this.handleInput.bind(this)} 
-                    value={this.state.rentSelect === 0 ? this.state.rent : this.state.rent * 4} 
-                    type="number"
-                    min={this.state.rentSelect === 0 ? MIN_WEEK_RENT : MAX_WEEK_RENT}
-                    max={this.state.rentSelect === 0 ? MIN_MONTH_RENT : MAX_MONTH_RENT} 
-              />
+                <Input type="number" handlerId="rent"
+                       handler={this.handleInput.bind(this)}
+                       min={this.state.rentSelect === 0 ? MIN_WEEK_RENT : MAX_WEEK_RENT}
+                       max={this.state.rentSelect === 0 ? MIN_MONTH_RENT : MAX_MONTH_RENT} 
+                />
+
+                <Select options={['Week', 'Month']} handler={this.handleInput.bind(this)} handlerId="rentSelect" />
+              </div>
             
             </div>
             
