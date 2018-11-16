@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import './Input.scss';
+
 export default class Input extends Component {
 
   constructor() {
@@ -31,8 +33,8 @@ export default class Input extends Component {
      
   render() {
     return (
-      <div className="Input"> 
-        
+      <div className="Input">
+        <span>{this.props.prefix}</span>
         <input onChange={this.passEvent} 
               type={this.props.type}
               value={this.state.value}
