@@ -41,7 +41,7 @@ export default class Wrapper extends Component {
       return (
         <div className="Wrapper">
           <div className="back-button" onClick={this.goBack.bind(this)} >
-            <Ionicon icon="ios-arrow-round-back" fontSize="4rem"/>
+            <Ionicon icon="md-arrow-back" fontSize="4rem" color="white"/>
           </div>
           <Finished />
         </div>
