@@ -4,6 +4,7 @@ import { fetchConfig } from '../../api/api';
 import './Form.scss';
 import Select from '../select/Select';
 import Input from '../input/Input';
+import Button from '../button/Button';
 
 // Used to make it easy to change
 const VAT = 0.2;
@@ -135,12 +136,13 @@ export default class Form extends Component {
                 
               </div>
             </div>
-          
-          <button className="submit-button" 
-                  type="submit"
-                  >
-            Submit
-          </button>
+              
+            <div className="form-group">
+              <div className="form-group-content">
+                <Button text="Create"/>
+              </div>
+            </div> 
+        
         </form>
       </div>
     )
