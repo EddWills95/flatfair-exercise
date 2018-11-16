@@ -73,11 +73,11 @@ export default class Form extends Component {
     if (this.state.apiResponse.fixed_membership_fee) {
       membershipFee = this.state.apiResponse.fixed_membership_fee_amount;
     // If less than minimum
-    } else if (this.state.rent < MEMBERSHIP_MINIMUM) {
+    } else if (rent < MEMBERSHIP_MINIMUM) {
       membershipFee = 120;
     // Normal operation
     } else {
-      membershipFee = this.state.rent
+      membershipFee = rent
     }
     
     // const finalFee = parseFloat(membershipFee).toFixed(2);
@@ -119,7 +119,7 @@ export default class Form extends Component {
 
   render() {
     return(
-      <div className="Form">
+      <div className="modal Form">
         <h1>Create Your FlatFair</h1>
 
         <form onSubmit={this.submitForm} id="flatfair-form">

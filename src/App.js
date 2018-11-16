@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import './App.scss';
 
 import Wrapper from './containers/wrapper/Wrapper';
 import Form from './components/form/Form';
