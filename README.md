@@ -1,3 +1,25 @@
+# FlatFair Font-End Exercise
+## Edd Williams
+
+N.B. Please run `npm i` first
+
+To Run: `npm start`  
+To Test: `npm test`  
+   - run `npm test -- --coverage` to generate coverage folder
+
+## Explaination
+
+- This was a really fun challenge that pushed me to be more createive in my styling and keep my code reusable
+- I initially started by creating everything in the wrapper component and then moved to developing more re-usable input and select components.
+   - This also gave me a really nice oppertunity to style them beyond the conventional `<input> * <button>` etc
+
+## Further Work
+- I'd like to add some more error handling. 
+   - It would lend itself to something like Redux for this as we could manage the state in a central place rather than passing props and state bacak and forth.
+
+
+
+---
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
