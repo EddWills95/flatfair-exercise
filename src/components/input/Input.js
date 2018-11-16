@@ -41,7 +41,7 @@ export default class Input extends Component {
               min={this.props.min}
               max={this.props.max}
               placeholder={this.props.placeholder}
-              autocomplete={this.props.autocomplete}
+              autoComplete={this.props.autocomplete}
         >
         
         </input>
