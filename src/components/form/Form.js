@@ -80,8 +80,6 @@ export default class Form extends Component {
       membershipFee = rent
     }
     
-    // const finalFee = parseFloat(membershipFee).toFixed(2);
-    // Forcing it to a string - Not ideal
     let finalFee = parseFloat(parseFloat(membershipFee) + (VAT * membershipFee)).toFixed(2);
     
     this.setState({
