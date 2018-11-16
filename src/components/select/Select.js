@@ -31,7 +31,10 @@ export default class Select extends Component {
     return ( 
       <div className="Select">
         {this.props.options.map((o, i) => 
-          <div className="select-option" key={i} onClick={() => this.passEvent(i)}>
+          <div className={`option ` + (i === this.state.selected ? 'option-selected' : '')} 
+               key={i} 
+               onClick={() => this.passEvent(i)}
+          >
             {o}   
           </div>
         )}

@@ -4,7 +4,7 @@
   border-radius: 2px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0,0,0,.33);
-  .select-option {
+  .option {
     width: 5rem;
     padding: 0.25rem;
     background-color: rgb(227, 227, 227);
@@ -12,8 +12,11 @@
       margin: 0.25rem;
     }
     &:hover {
-      background-color: rgb(193, 193, 193);
+      background-color: rgb(147, 147, 147);
       cursor: pointer;
     }
+  }
+  .option-selected {
+    background-color: rgb(193, 193, 193);
   }
 }
